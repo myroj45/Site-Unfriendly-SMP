@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnfriendlySMP - Serveur Minecraft SMP</title>
+    <meta name="description" content="Rejoins l'UnfriendlySMP, le serveur Minecraft Survie le plus intense. IP: Unfriendly-smp.mcgo.io">
+    
+    <!-- Police Google Fonts pour un look Minecraft/Gaming -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE COULEUR --- */
+        :root {
+            --primary-red: #ff0000;
+            --dark-red: #8b0000;
+            --bg-black: #0a0a0a;
+            --text-white: #ffffff;
+            --gray: #1a1a1a;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- ARRIÈRE PLAN ANIMÉ --- */
+        .background-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- HEADER / NAV --- */
+        header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            text-shadow: 0 0 10px var(--primary-red);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 700;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: var(--primary-red);
+            text-shadow: 0 0 5px var(--primary-red);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 250px;
+            height: 250px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary-red);
+            box-shadow: 0 0 30px var(--primary-red), inset 0 0 20px var(--primary-red);
+            animation: pulse 3s infinite;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px var(--primary-red); }
+            50% { box-shadow: 0 0 40px var(--primary-red), 0 0 60px var(--dark-red); }
+            100% { box-shadow: 0 0 20px var(--primary-red); }
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 4px 4px 0px var(--dark-red), 0 0 20px var(--primary-red);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #ccc;
+            letter-spacing: 2px;
+        }
+
+        /* --- BOUTON IP --- */
+        .ip-box {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid var(--primary-red);
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ip-box:hover {
+            background: var(--primary-red);
+            box-shadow: 0 0 30px var(--primary-red);
+            transform: scale(1.05);
+        }
+
+        .ip-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        .ip-address {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .copy-msg {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--primary-red);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* --- STATUT SERVEUR --- */
+        .server-status {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #333;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #555;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 5px #555;
+        }
+
+        .status-online { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        .status-offline { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--primary-red);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        /* --- FEATURES GRID --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--gray);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-red);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: #222;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .logo-container { width: 180px; height: 180px; }
+            header { padding: 15px 20px; }
+            nav { display: none; } /* Menu mobile simplifié */
+            .server-status { flex-direction: column; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Grille de fond -->
+    <div class="background-grid"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-text">UNFRIENDLY SMP</div>
+        <nav>
+            <a href="#home">Accueil</a>
+            <a href="#features">Fonctionnalités</a>
+            <a href="#join">Rejoindre</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <!-- Remplace ce lien par le chemin de ton image locale si tu l'as téléchargée -->
+        <div class="logo-container">
+            <!-- J'utilise un placeholder, mais tu dois mettre ton image ici -->
+            <img src="https://i.imgur.com/your-image-placeholder.png" alt="Logo UnfriendlySMP" onerror="this.src='https://placehold.co/250x250/000000/ff0000?text=UNFRIENDLY'">
+        </div>
+
+        <h1>Unfriendly SMP</h1>
+        <p class="subtitle">Survis. Domine. Deviens une légende.</p>
+
+        <div class="ip-box" onclick="copyIP()">
+            <span class="ip-label">IP du Serveur (Clique pour copier)</span>
+            <div class="ip-address" id="ip-text">Unfriendly-smp.mcgo.io</div>
+            <div class="copy-msg" id="copy-msg">Copié !</div>
+        </div>
+
+        <!-- Statut en direct -->
+        <div class="server-status">
+            <div>
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Vérification...</span>
+            </div>
+            <div>
+                👥 <span id="player-count">0</span> Joueurs
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2 class="section-title">Pourquoi nous rejoindre ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>⚔️ Survie Pure</h3>
+                <p>Pas de pay-to-win. Juste toi, tes compétences et la nature sauvage. Grimpe dans la hiérarchie par la force ou la ruse.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🏰 Bases & Factions</h3>
+                <p>Crée ta base, forme des alliances, ou détruis celles des autres. La politique du serveur est entre tes mains.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚫 Zéro Tolérance</h3>
+                <p>Un environnement "Unfriendly". Pas de triche, pas de toxicité gratuite. Juste une compétition acharnée et loyale.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Performance</h3>
+                <p>Serveur hébergé sur une machine puissante pour garantir zéro lag, même lors des plus grosses batailles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 UnfriendlySMP. Non affilié à Mojang AB.</p>
+        <p>IP: Unfriendly-smp.mcgo.io</p>
+    </footer>
+
+    <script>
+        // --- FONCTION COPIER IP ---
+        function copyIP() {
+            const ip = "Unfriendly-smp.mcgo.io";
+            navigator.clipboard.writeText(ip).then(() => {
+                const msg = document.getElementById('copy-msg');
+                msg.style.opacity = '1';
+                msg.style.bottom = '-20px';
+                
+                setTimeout(() => {
+                    msg.style.opacity = '0';
+                    msg.style.bottom = '-30px';
+                }, 2000);
+            }).catch(err => {
+                console.error('Erreur lors de la copie : ', err);
+            });
+        }
+
+        // --- API STATUT SERVEUR (Utilise mcstatus.io) ---
+        async function fetchServerStatus() {
+            const ip = "Unfriendly-smp.mcgo.io";
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const playerCount = document.getElementById('player-count');
+
+            try {
+                // Appel à l'API publique
+                const response = await fetch(`https://api.mcstatus.io/v2/status/java/${ip}`);
+                const data = await response.json();
+
+                if (data.online) {
+                    statusDot.className = 'status-dot status-online';
+                    statusText.textContent = 'En ligne';
+                    playerCount.textContent = data.players.online;
+                } else {
+                    statusDot.className = 'status-dot status-offline';
+                    statusText.textContent = 'Hors ligne';
+                    playerCount.textContent = '0';
+                }
+            } catch (error) {
+                console.error("Erreur API:", error);
+                statusText.textContent = "Statut inconnu";
+                statusDot.className = 'status-dot';
+            }
+        }
+
+        // Lancer la vérification au chargement
+        window.onload = fetchServerStatus;
+        
+        // Rafraîchir toutes les 60 secondes
+        setInterval(fetchServerStatus, 60000);
+    </script>
+</body>
+</html>
