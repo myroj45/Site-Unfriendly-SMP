@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki — UnfriendlySMP</title>
+    <meta name="description" content="Guide complet du serveur UnfriendlySMP.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+    <button id="mute-toggle" class="mute-toggle" title="Activer/Désactiver la musique" aria-label="Toggle music">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="glow-bg"></div>
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/60x60/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </a>
+            
+            <nav id="nav-menu">
+                <a href="index.html">Accueil</a>
+                <a href="equipe.html">Équipe</a>
+                <a href="wiki.html" class="active">Wiki</a>
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="btn-nav">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+            </nav>
+
+            <div class="burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">// WIKI OFFICIEL</span>
+            <h1 class="page-title">Le <span class="red">guide</span> complet</h1>
+            <p class="page-subtitle">Tout ce que tu dois savoir pour survivre et dominer sur UnfriendlySMP.</p>
+
+            <div class="wiki-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="wiki-search-input" placeholder="Rechercher dans le wiki...">
+            </div>
+        </div>
+    </section>
+
+    <section class="wiki-layout">
+        
+        <aside class="wiki-sidebar">
+            <h3><i class="fa-solid fa-list"></i> Sommaire</h3>
+            <ul class="wiki-toc">
+                <li><a href="#demarrer" class="toc-link active"><i class="fa-solid fa-play"></i> Bien démarrer</a></li>
+                <li><a href="#commandes" class="toc-link"><i class="fa-solid fa-terminal"></i> Commandes</a></li>
+                <li><a href="#gameplay" class="toc-link"><i class="fa-solid fa-gamepad"></i> Gameplay</a></li>
+                <li><a href="#grades" class="toc-link"><i class="fa-solid fa-crown"></i> Grades</a></li>
+                <li><a href="#evenements" class="toc-link"><i class="fa-solid fa-calendar"></i> Événements</a></li>
+                <li><a href="#regles" class="toc-link"><i class="fa-solid fa-scroll"></i> Règles</a></li>
+                <li><a href="#faq" class="toc-link"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+
+            <article class="wiki-section" id="demarrer">
+                <h2><i class="fa-solid fa-play"></i> Bien démarrer</h2>
+                <p>Bienvenue sur <strong>UnfriendlySMP</strong> ! Voici les étapes pour rejoindre le serveur.</p>
+
+                <div class="wiki-steps">
+                    <div class="wiki-step">
+                        <span class="step-num">1</span>
+                        <div>
+                            <h4>Installer Minecraft Java Edition</h4>
+                            <p>Télécharge le launcher officiel depuis <a href="https://www.minecraft.net/" target="_blank">minecraft.net</a>.</p>
+                        </div>
+                    </div>
+                    <div class="wiki-step">
+                        <span class="step-num">2</span>
+                        <div>
+                            <h4>Choisir la bonne version</h4>
+                            <p>Le serveur tourne sous <strong>1.21.2</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="wiki-step">
+                        <span class="step-num">3</span>
+                        <div>
+                            <h4>Ajouter le serveur</h4>
+                            <p>Colle l'IP : <code>Unfriendly-smp.mcgo.io</code></p>
+                        </div>
+                    </div>
+                    <div class="wiki-step">
+                        <span class="step-num">4</span>
+                        <div>
+                            <h4>Rejoindre et survivre</h4>
+                            <p>Bonne chance, tu vas en avoir besoin.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="wiki-section" id="commandes">
+                <h2><i class="fa-solid fa-terminal"></i> Commandes utiles</h2>
+                <p>Toutes les commandes de base à connaître.</p>
+
+                <div class="commands-table">
+                    <div class="command-row header">
+                        <span>Commande</span>
+                        <span>Description</span>
+                    </div>
+                    <div class="command-row"><code>/spawn</code><span>Téléporte au spawn</span></div>
+                    <div class="command-row"><code>/home</code><span>Te téléporte à ta base</span></div>
+                    <div class="command-row"><code>/sethome</code><span>Définit ta base</span></div>
+                    <div class="command-row"><code>/tpa &lt;joueur&gt;</code><span>Demande téléportation</span></div>
+                    <div class="command-row"><code>/msg &lt;joueur&gt; &lt;msg&gt;</code><span>Message privé</span></div>
+                    <div class="command-row"><code>/kit starter</code><span>Kit de démarrage</span></div>
+                    <div class="command-row"><code>/vote</code><span>Vote pour le serveur</span></div>
+                    <div class="command-row"><code>/report &lt;joueur&gt;</code><span>Signaler un joueur</span></div>
+                </div>
+            </article>
+
+            <article class="wiki-section" id="gameplay">
+                <h2><i class="fa-solid fa-gamepad"></i> Gameplay</h2>
+                <p>Comprendre les mécaniques principales.</p>
+
+                <div class="wiki-cards">
+                    <div class="wiki-card">
+                        <h4><i class="fa-solid fa-house"></i> Bases & Factions</h4>
+                        <p>Crée ta faction, construis ta base, protège tes coffres. PvP activé partout sauf au spawn.</p>
+                    </div>
+                    <div class="wiki-card">
+                        <h4><i class="fa-solid fa-coins"></i> Économie</h4>
+                        <p>Gagne de l'argent en minant, vendant ou tuant. Marché central disponible.</p>
+                    </div>
+                    <div class="wiki-card">
+                        <h4><i class="fa-solid fa-dungeon"></i> Donjons</h4>
+                        <p>Des donjons custom générés aléatoirement. Trouve-les et récupère le loot légendaire.</p>
+                    </div>
+                    <div class="wiki-card">
+                        <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Enchantements custom</h4>
+                        <p>Plus de 30 enchantements exclusifs. Découvre-les en jeu !</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="wiki-section" id="grades">
+                <h2><i class="fa-solid fa-crown"></i> Grades</h2>
+                <p>Les grades s'obtiennent en soutenant le serveur.</p>
+
+                <div class="grades-grid">
+                    <div class="grade-card">
+                        <div class="grade-icon"><i class="fa-solid fa-user"></i></div>
+                        <h4>Joueur</h4>
+                        <p>Grade par défaut. Toutes les fonctionnalités de base.</p>
+                    </div>
+                    <div class="grade-card vip">
+                        <div class="grade-icon"><i class="fa-solid fa-star"></i></div>
+                        <h4>VIP</h4>
+                        <p>Kit VIP, 3 homes, préfixe coloré, accès serveurs pleins.</p>
+                    </div>
+                    <div class="grade-card mvp">
+                        <div class="grade-icon"><i class="fa-solid fa-gem"></i></div>
+                        <h4>MVP</h4>
+                        <p>Kit MVP, 5 homes, /fly au spawn, priorité file d'attente.</p>
+                    </div>
+                    <div class="grade-card legend">
+                        <div class="grade-icon"><i class="fa-solid fa-crown"></i></div>
+                        <h4>Légende</h4>
+                        <p>Kit Légende, 10 homes, /fly partout, particules exclusives.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="wiki-section" id="evenements">
+                <h2><i class="fa-solid fa-calendar"></i> Événements</h2>
+                <p>Des événements sont organisés chaque semaine.</p>
+
+                <ul class="wiki-list">
+                    <li><strong>Tournoi PvP</strong> — Chaque samedi, 32 joueurs s'affrontent dans une arène.</li>
+                    <li><strong>Chasse au trésor</strong> — Un coffre légendaire est caché dans le monde.</li>
+                    <li><strong>Boss Raid</strong> — Un boss custom apparaît une fois par mois.</li>
+                    <li><strong>Construction Battle</strong> — Concours de build sur un thème donné.</li>
+                </ul>
+            </article>
+
+            <article class="wiki-section" id="regles">
+                <h2><i class="fa-solid fa-scroll"></i> Règles</h2>
+                <p>Le non-respect des règles entraîne des sanctions.</p>
+
+                <ol class="wiki-rules">
+                    <li><strong>Respect obligatoire</strong> — Aucune insulte, harcèlement ou propos discriminatoire.</li>
+                    <li><strong>Pas de triche</strong> — X-Ray, killaura, fly = ban permanent.</li>
+                    <li><strong>Pas de griefing abusif</strong> — PvP autorisé, destruction gratuite non.</li>
+                    <li><strong>Pas de publicité</strong> — Aucune pub pour d'autres serveurs.</li>
+                    <li><strong>Pas de spam</strong> — Évite le flood dans le chat.</li>
+                    <li><strong>Respect du staff</strong> — Les décisions du staff sont finales.</li>
+                </ol>
+            </article>
+
+            <article class="wiki-section" id="faq">
+                <h2><i class="fa-solid fa-circle-question"></i> FAQ</h2>
+                <p>Les questions les plus fréquentes.</p>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Quelle version de Minecraft faut-il ?</summary>
+                        <p>Nous supportons la version <strong>1.21.2</strong>.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Le serveur est-il pay-to-win ?</summary>
+                        <p>Non. Les grades apportent du confort mais aucun avantage en PvP.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Comment signaler un cheater ?</summary>
+                        <p>Utilise <code>/report &lt;pseudo&gt;</code> en jeu ou ouvre un ticket sur Discord.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Puis-je jouer sur Bedrock ?</summary>
+                        <p>Non, le serveur est exclusivement Java Edition.</p>
+                    </details>
+                </div>
+            </article>
+
+            <div class="wiki-cta">
+                <h3>Tu ne trouves pas ta réponse ?</h3>
+                <p>Rejoins notre Discord, l'équipe t'aidera avec plaisir.</p>
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="cta-ip" style="text-decoration:none; display:inline-flex;">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>Rejoindre le Discord</span>
+                </a>
+            </div>
+
+        </main>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/50x50/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </div>
+            <p class="footer-text">© 2024 UnfriendlySMP. Non affilié à Mojang AB.</p>
+            <div class="footer-socials">
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 🎮 BOUTON DISCORD FLOTTANT -->
+    <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="discord-float" title="Rejoindre le Discord">
+        <i class="fa-brands fa-discord"></i>
+        <span class="discord-float-text">Rejoindre</span>
+    </a>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check"></i>
+        <span>Copié !</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

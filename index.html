@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnfriendlySMP — Survie. Domination. Légende.</title>
+    <meta name="description" content="Rejoins l'UnfriendlySMP, le serveur Minecraft SMP le plus intense. IP: Unfriendly-smp.mcgo.io">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+    <button id="mute-toggle" class="mute-toggle" title="Activer/Désactiver la musique" aria-label="Toggle music">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="glow-bg"></div>
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/60x60/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </a>
+            
+            <nav id="nav-menu">
+                <a href="index.html" class="active">Accueil</a>
+                <a href="equipe.html">Équipe</a>
+                <a href="wiki.html">Wiki</a>
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="btn-nav">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+            </nav>
+
+            <div class="burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot-live"></span> SERVEUR SMP • 1.21.2
+            </div>
+
+            <div class="hero-logo-wrapper">
+                <div class="hero-logo-glow"></div>
+                <img src="logo.png" alt="UnfriendlySMP Logo" class="hero-logo" onerror="this.src='https://placehold.co/200x200/000000/ff0000?text=US'">
+            </div>
+
+            <h1 class="hero-title">UNFRIENDLY<span class="red">SMP</span></h1>
+            
+            <p class="hero-subtitle">
+                Survie. Domination. Légende.<br>
+                Le serveur SMP où seuls les plus forts survivent.
+            </p>
+
+            <div class="ip-container" onclick="copyIP()">
+                <div class="ip-content">
+                    <span class="ip-label"><i class="fa-solid fa-server"></i> IP DU SERVEUR</span>
+                    <span class="ip-address">Unfriendly-smp.mcgo.io</span>
+                </div>
+                <div class="ip-copy-btn"><i class="fa-regular fa-copy"></i></div>
+            </div>
+
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Vérification...</span>
+                </div>
+                <div class="separator"></div>
+                <div class="status-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span><strong id="player-count">--</strong> joueurs</span>
+                </div>
+                <div class="separator"></div>
+                <div class="status-item">
+                    <i class="fa-solid fa-signal"></i>
+                    <span id="version-text">1.21.2</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="#stats" class="scroll-down"><i class="fa-solid fa-chevron-down"></i></a>
+    </section>
+
+    <section class="section" id="stats">
+        <div class="section-header">
+            <span class="section-tag">// EN CHIFFRES</span>
+            <h2 class="section-title">Le serveur en <span class="red">stats</span></h2>
+            <p class="section-desc">Des chiffres qui parlent d'eux-mêmes.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="stat-number" data-target="1247">0</div>
+                <div class="stat-label">Joueurs enregistrés</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-skull-crossbones"></i></div>
+                <div class="stat-number" data-target="8942">0</div>
+                <div class="stat-label">Morts PvP</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-cube"></i></div>
+                <div class="stat-number" data-target="1520000" data-suffix="+">0</div>
+                <div class="stat-label">Blocs minés</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-castle"></i></div>
+                <div class="stat-number" data-target="342">0</div>
+                <div class="stat-label">Bases construites</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="stat-number" data-target="45800" data-suffix="h">0</div>
+                <div class="stat-label">Heures de jeu cumulées</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="stat-number" data-target="87">0</div>
+                <div class="stat-label">Événements organisés</div>
+            </div>
+        </div>
+
+        <div class="live-stats-banner">
+            <div class="live-stat">
+                <span class="live-label"><span class="dot-live" id="live-dot"></span> STATUT</span>
+                <span class="live-value"><strong id="live-status">Vérification...</strong></span>
+            </div>
+            <div class="live-stat">
+                <span class="live-label">JOUEURS CONNECTÉS</span>
+                <span class="live-value"><strong id="live-players">--</strong></span>
+            </div>
+            <div class="live-stat">
+                <span class="live-label">VERSION</span>
+                <span class="live-value" id="live-version">1.21.2</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="section-header">
+            <span class="section-tag">// POURQUOI NOUS</span>
+            <h2 class="section-title">Une expérience <span class="red">unique</span></h2>
+            <p class="section-desc">Un serveur SMP pensé pour les joueurs qui veulent du vrai challenge.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-skull"></i></div>
+                <h3>Survie Pure</h3>
+                <p>Pas de pay-to-win. Pas de raccourcis. Juste toi, tes compétences et la nature sauvage.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-castle"></i></div>
+                <h3>Bases & Factions</h3>
+                <p>Forme des alliances, construis ton empire ou détruis celui des autres.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Zéro Lag</h3>
+                <p>Serveur hébergé sur une machine haute performance pour des batailles fluides.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Anti-Cheat</h3>
+                <p>Protection avancée contre la triche. Un environnement loyal et compétitif.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                <h3>Économie Joueur</h3>
+                <p>Un marché 100% géré par les joueurs. Vends, achète, domine le commerce.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-crown"></i></div>
+                <h3>Événements</h3>
+                <p>Batailles organisées, tournois PvP et events surprises chaque semaine.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="join">
+        <div class="cta-content">
+            <h2>Prêt à rejoindre <span class="red">l'arène</span> ?</h2>
+            <p>Copie l'IP, lance ton Minecraft et montre-nous de quoi tu es capable.</p>
+            
+            <div class="cta-buttons">
+                <div class="cta-ip" onclick="copyIP()">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Unfriendly-smp.mcgo.io</span>
+                    <i class="fa-regular fa-copy"></i>
+                </div>
+
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="cta-discord">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>Rejoindre le Discord</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/50x50/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </div>
+            <p class="footer-text">© 2024 UnfriendlySMP. Non affilié à Mojang AB.</p>
+            <div class="footer-socials">
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 🎮 BOUTON DISCORD FLOTTANT -->
+    <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="discord-float" title="Rejoindre le Discord">
+        <i class="fa-brands fa-discord"></i>
+        <span class="discord-float-text">Rejoindre</span>
+    </a>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check"></i>
+        <span>IP copiée dans le presse-papiers !</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

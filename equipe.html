@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipe — UnfriendlySMP</title>
+    <meta name="description" content="Découvre l'équipe du serveur UnfriendlySMP.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+    <button id="mute-toggle" class="mute-toggle" title="Activer/Désactiver la musique" aria-label="Toggle music">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="glow-bg"></div>
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/60x60/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </a>
+            
+            <nav id="nav-menu">
+                <a href="index.html">Accueil</a>
+                <a href="equipe.html" class="active">Équipe</a>
+                <a href="wiki.html">Wiki</a>
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="btn-nav">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+            </nav>
+
+            <div class="burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">// NOTRE ÉQUIPE</span>
+            <h1 class="page-title">Le <span class="red">staff</span> du serveur</h1>
+            <p class="page-subtitle">Une équipe réduite mais efficace, qui fait tourner le serveur au quotidien.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="team-grid-solo">
+            <div class="team-card founder solo-card">
+                <div class="team-avatar-wrapper solo-avatar">
+                    <img 
+                        src="https://minotar.net/armor/body/Myro45_/200.png" 
+                        alt="Myro45_" 
+                        class="team-avatar"
+                        onerror="this.onerror=null; this.src='https://api.dicebear.com/9.x/pixel-art/svg?seed=Myro45_';"
+                    >
+                    <span class="team-badge owner"><i class="fa-solid fa-crown"></i></span>
+                </div>
+                <h3 class="team-name">Myro45_</h3>
+                <span class="team-role role-owner">Admin & Owner</span>
+                <p class="team-bio">
+                    Fondateur et administrateur d'UnfriendlySMP. Gère l'infrastructure, 
+                    la modération, le développement et la vision globale du serveur.
+                </p>
+                <div class="team-socials">
+                    <a href="https://discord.gg/QRZ3kePPKG" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Envie de rejoindre <span class="red">l'équipe</span> ?</h2>
+            <p>Nous recrutons régulièrement des modérateurs et builders passionnés. Postule sur notre Discord !</p>
+            
+            <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="cta-ip" style="text-decoration:none;">
+                <i class="fa-brands fa-discord"></i>
+                <span>Postuler sur Discord</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo.png" alt="UnfriendlySMP" onerror="this.src='https://placehold.co/50x50/ff0000/000000?text=US'">
+                <span>UNFRIENDLY<span class="red">SMP</span></span>
+            </div>
+            <p class="footer-text">© 2024 UnfriendlySMP. Non affilié à Mojang AB.</p>
+            <div class="footer-socials">
+                <a href="https://discord.gg/QRZ3kePPKG" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 🎮 BOUTON DISCORD FLOTTANT -->
+    <a href="https://discord.gg/QRZ3kePPKG" target="_blank" class="discord-float" title="Rejoindre le Discord">
+        <i class="fa-brands fa-discord"></i>
+        <span class="discord-float-text">Rejoindre</span>
+    </a>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check"></i>
+        <span>Copié !</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
