@@ -55,7 +55,7 @@ Pas de pay-to-win, pas de raccourcis. Juste toi, tes compétences et la nature s
 ## 🌐 Site Web
 
 Ce dépôt contient le **site officiel** d'UnfriendlySMP, développé en **HTML / CSS / JavaScript pur** (aucun framework).
-https://unfriendly-smp.netlify.app/
+https://unfriendly-smp.netlify.app/ Le site est ouvert !
 
 ### ✨ Fonctionnalités du site
 
